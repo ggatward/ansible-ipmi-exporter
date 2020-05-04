@@ -10,7 +10,7 @@ Type=simple
 User={{ ipmi_exporter_system_user }}
 Group={{ ipmi_exporter_system_group }}
 ExecStart=/usr/local/bin/ipmi_exporter \
-  --config.file="{{ ipmi_config_file }}" \
+  --config.file="{{ ipmi_exporter_config_file }}" \
   --web.listen-address={{ ipmi_exporter_web_listen_address }}{% for flag, flag_value in ipmi_exporter_config_flags_extra.items() %}\
   --{{ flag }}{% if flag_value %}={{ flag_value }}{% endif %} {% endfor %}
 

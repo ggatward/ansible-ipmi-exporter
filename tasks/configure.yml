@@ -9,12 +9,12 @@
     - ansible_version.full is version_compare('2.4', '>=')
     - ansible_selinux.status == "enabled"
 
-- name: Deploy configuration file
-  copy:
-    content: |
-      #
+- name: configure ipmi exporter
+  template:
+    src: ipmi_exporter.yml.j2
     dest: "{{ ipmi_exporter_config_file }}"
     owner: "{{ ipmi_exporter_system_user }}"
     group: "{{ ipmi_exporter_system_group }}"
     mode: '0600'
-  when: ipmi_exporter_config_file is defined
+  notify:
+    - restart ipmi_exporter

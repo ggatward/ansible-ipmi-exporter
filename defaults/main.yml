@@ -2,7 +2,7 @@
 ipmi_exporter_version: 1.2.0
 ipmi_exporter_web_listen_address: "0.0.0.0:9290"
 
-ipmi_exporter_config_file: '/usr/local/etc/ipmi_exporter.conf'
+ipmi_exporter_config_file: '/etc/ipmi_exporter.yml'
 
 # ipmi_exporter_ssl_verify: true
 # ipmi_exporter_user: 'admin@internal'
@@ -15,3 +15,34 @@ ipmi_exporter_config_file: '/usr/local/etc/ipmi_exporter.conf'
 ipmi_exporter_config_flags_extra: {}
 # ovirt_config_flags_extra:
 #   debug: true
+
+ipmi_exporter_configuration_modules:
+  default:
+    # These settings are used if no module is specified, the
+    # specified module doesn't exist, or of course if
+    # module=default is specified.
+    user: "default_user"
+    pass: "example_pw"
+    # The below settings correspond to driver-type, privilege-level, and
+    # session-timeout respectively, see `man 5 freeipmi.conf` (and e.g.
+    # `man 8 ipmi-sensors` for a list of driver types).
+    driver: "LAN_2_0"
+    privilege: "user"
+    # The session timeout is in milliseconds. Note that a scrape can take up
+    # to (session-timeout * #-of-collectors) milliseconds, so set the scrape
+    # timeout in Prometheus accordingly.
+    timeout: 10000
+    # Available collectors are bmc, ipmi, chassis, dcmi, and sel
+    # If _not_ specified, bmc, ipmi, chassis, and dcmi are used
+    collectors:
+    - bmc
+    - ipmi
+    - chassis
+    # Got any sensors you don't care about? Add them here.
+    exclude_sensor_ids:
+    - 2
+    - 29
+    - 32
+    - 50
+    - 52
+    - 55

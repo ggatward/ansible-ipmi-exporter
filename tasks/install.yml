@@ -39,7 +39,7 @@
   unarchive:
     src: "/tmp/ipmi_exporter-{{ ipmi_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] | default(ansible_architecture) }}.tar.gz"
     dest: "/tmp"
-    creates: "/tmp/ipmi_exporter-{{ ipmi_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] }}/ipmi_exporter"
+    creates: "/tmp/ipmi_exporter-v{{ ipmi_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] }}/ipmi_exporter"
   delegate_to: localhost
   check_mode: false
 
@@ -54,7 +54,7 @@
 
 - name: Propagate ipmi_exporter binaries
   copy:
-    src: "/tmp/ipmi_exporter-{{ ipmi_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] }}/ipmi_exporter"
+    src: "/tmp/ipmi_exporter-v{{ ipmi_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] }}/ipmi_exporter"
     dest: "/usr/local/bin/ipmi_exporter"
     mode: 0750
     owner: "{{ ipmi_exporter_system_user }}"
