@@ -1,0 +1,17 @@
+---
+ipmi_exporter_version: 1.2.0
+ipmi_exporter_web_listen_address: "0.0.0.0:9290"
+
+ipmi_exporter_config_file: '/usr/local/etc/ipmi_exporter.conf'
+
+# ipmi_exporter_ssl_verify: true
+# ipmi_exporter_user: 'admin@internal'
+# ipmi_exporter_password: 'ChangeMe'
+# ipmi_exporter_password_file:
+# ipmi_exporter_include_disks: true
+# ipmi_exporter_include_network: true
+# ipmi_exporter_include_snapshots: true
+
+ipmi_exporter_config_flags_extra: {}
+# ovirt_config_flags_extra:
+#   debug: true
